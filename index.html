@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Forest of the Ancients — a personal plant care journal and tracker" />
+  <meta name="theme-color" content="#2d5a2d" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FOTA" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <meta property="og:title" content="Forest of the Ancients" />
+  <meta property="og:description" content="A personal plant care journal and tracker" />
+  <meta property="og:type" content="website" />
+
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+
+  <title>Forest of the Ancients</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; background: #0f1a0f; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f1a0f;
+      color: #e8f0e8;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+    #app {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    #splash {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      min-height: 100dvh;
+      gap: 1rem;
+      background: #0f1a0f;
+    }
+    #splash-icon {
+      font-size: 64px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    #splash-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #e8f0e8;
+      letter-spacing: -0.3px;
+    }
+    #splash-sub {
+      font-size: 13px;
+      color: #4a6a4a;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(0.96); }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div id="splash">
+      <div id="splash-icon">🌿</div>
+      <div id="splash-title">Forest of the Ancients</div>
+      <div id="splash-sub">Loading your garden...</div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
