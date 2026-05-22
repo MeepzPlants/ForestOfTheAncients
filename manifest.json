@@ -1,12 +1,17 @@
 {
   "name": "Forest of the Ancients",
   "short_name": "FOTA",
-  "description": "A personal plant care journal and tracker",
+  "description": "A personal plant care journal and tracker. Log entries, track growth, record harvests, and manage propagation — all stored privately on your device.",
+  "id": "/",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#1a2e1a",
   "theme_color": "#2d5a2d",
-  "orientation": "portrait-primary",
+  "orientation": "portrait",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["lifestyle", "utilities", "health"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -21,7 +26,15 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["lifestyle", "utilities"],
+  "screenshots": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Forest of the Ancients home screen"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Add Journal Entry",
