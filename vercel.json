@@ -1,7 +1,7 @@
 {
   "headers": [
     {
-      "source": "/manifest.json",
+      "source": "/manifest.webmanifest",
       "headers": [
         {
           "key": "Content-Type",
@@ -14,18 +14,18 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/sw.js",
       "headers": [
         {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!api/.*).*)",
+      "source": "/((?!manifest.webmanifest|sw.js|icon-192.png|icon-512.png|logo.svg|favicon.ico|assets/.*).*)",
       "destination": "/index.html"
     }
   ]
