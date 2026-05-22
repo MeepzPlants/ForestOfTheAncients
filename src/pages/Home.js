@@ -94,13 +94,6 @@ export async function HomePage() {
     addPlantBtn.addEventListener('click', () => window.router?.navigate('/inventory'))
     welcome.appendChild(addPlantBtn)
 
-    const loadPresetsBtn = document.createElement('button')
-    loadPresetsBtn.className = 'btn btn-secondary'
-    loadPresetsBtn.style.cssText = 'margin-top:8px;width:100%;'
-    loadPresetsBtn.textContent = 'Load preset plants'
-    loadPresetsBtn.addEventListener('click', () => window.router?.navigate('/settings'))
-    welcome.appendChild(loadPresetsBtn)
-
     page.appendChild(welcome)
     return page
   }

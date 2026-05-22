@@ -3,8 +3,6 @@ import { requestPermission, getNotificationStatus } from '../utils/notifications
 import { Settings as SettingsDB } from '../db/queries.js'
 import { clearAllData } from '../db/indexedDB.js'
 import { confirmModal, alertModal } from '../components/Modal.js'
-import { DEFAULT_PLANTS } from '../data/defaultPlants.js'
-import { Plants } from '../db/queries.js'
 
 export async function SettingsPage() {
   const page = document.createElement('div')
@@ -66,56 +64,6 @@ export async function SettingsPage() {
   notifCard.appendChild(notifStatus)
   page.appendChild(notifCard)
   await refreshNotifStatus()
-
-  page.appendChild(sectionLabel('Default plant list'))
-  const defaultCard = document.createElement('div')
-  defaultCard.className = 'card'
-  defaultCard.style.marginBottom = '1rem'
-
-  const defaultDesc = document.createElement('p')
-  defaultDesc.style.cssText = 'font-size:13px;color:var(--color-text-tertiary);margin-bottom:0.875rem;'
-  defaultDesc.textContent = DEFAULT_PLANTS.length > 0
-    ? `Load ${DEFAULT_PLANTS.length} preset plants into your inventory. This will add them alongside any plants you already have.`
-    : 'No preset plants are bundled with this version of the app.'
-
-  defaultCard.appendChild(defaultDesc)
-
-  if (DEFAULT_PLANTS.length > 0) {
-    const loadBtn = document.createElement('button')
-    loadBtn.className = 'btn btn-secondary'
-    loadBtn.style.width = '100%'
-    loadBtn.textContent = `Load ${DEFAULT_PLANTS.length} preset plants`
-
-    const loadStatus = document.createElement('div')
-    loadStatus.style.cssText = 'font-size:12px;margin-top:8px;'
-
-    loadBtn.addEventListener('click', () => {
-      confirmModal({
-        title: 'Load preset plants?',
-        message: `This will add ${DEFAULT_PLANTS.length} plants to your inventory alongside any existing plants. Continue?`,
-        confirmLabel: 'Load plants',
-        confirmCls: 'btn-primary',
-        onConfirm: async () => {
-          try {
-            const existing = await Plants.getAll()
-            const existingNames = new Set(existing.map(p => p.name))
-            const toAdd = DEFAULT_PLANTS.filter(p => !existingNames.has(p.name))
-            await Promise.all(toAdd.map(p => Plants.add(p)))
-            loadStatus.textContent = `Added ${toAdd.length} plants (${DEFAULT_PLANTS.length - toAdd.length} already existed).`
-            loadStatus.style.color = 'var(--color-success-text)'
-          } catch (err) {
-            loadStatus.textContent = `Error: ${err.message}`
-            loadStatus.style.color = 'var(--color-danger-text)'
-          }
-        }
-      })
-    })
-
-    defaultCard.appendChild(loadBtn)
-    defaultCard.appendChild(loadStatus)
-  }
-
-  page.appendChild(defaultCard)
 
   page.appendChild(sectionLabel('Backup & restore'))
   createExportImport({
